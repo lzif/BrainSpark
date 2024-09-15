@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Luki-Zainur-Ismawan-s-workspace-n5rid4.us-east-1.xata.sh/db/Quizella",
+  "codegen": {
+    "output": "app/services/xata.server.ts"
+  }
+}
