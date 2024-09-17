@@ -1,9 +1,23 @@
-import { getXataClient } from "./xata.server";
 import { verifyPassword } from "~/utils/pw";
 
-export const xata = getXataClient();
-const db = xata.db;
-export default db;
+import { PrismaClient } from "@prisma/client";
+
+let db: PrismaClient;
+
+declare global {
+  var __db: PrismaClient | undefined;
+}
+
+if (process.env.NODE_ENV === "production") {
+  db = new PrismaClient();
+} else {
+  if (!global.__db) {
+    global.__db = new PrismaClient();
+  }
+  db = global.__db;
+}
+
+export { db };
 
 export async function loginOrRegister({
   username,
